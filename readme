@@ -14,4 +14,3 @@ colours and transforms
 lighting and textures not supported
 support for transparency and one sided objects
 zoom using scroll (changes amount of fish-eye effect)
-tested in chrome 6, firefox 3.6 and opera 10.6

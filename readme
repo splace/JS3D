@@ -1,1 +1,13 @@
-Start by downlaoding any *.xml file
+Start by downlaoding, and firing into a browser, any *.xml file
+
+Technology demonstrator of 3D rendering and navigation within a standards compliant web page (requires browser SVG support), no need for a plugin. Intended for use creating basic informative diagrams, ideal for live 3D animations through a web 2.0 mashup. Uses JavaScript to generate SVG (inline) from X3D (inline) using a VRMLScript compliant environment object (an implementation of the VRMLScript standard in JS).
+
+facesets, linesets, pointsets, primitives
+concave or overlapping facesets not supported
+walk, pan, slide navigation modes using mouse drag events and keyboard
+curvilinear perspective by default
+colours and transforms
+lighting and textures not supported
+support for transparency and one sided objects
+zoom using scroll (changes amount of fish-eye effect)
+tested in chrome 6, firefox 3.6 and opera 10.6

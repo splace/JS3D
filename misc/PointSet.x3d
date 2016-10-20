@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.0//EN" "http://www.web3d.org/specifications/x3d-3.0.dtd">
+<X3D profile='Interchange' version='3.0'>
+  <head>
+    <meta content='PointSet.x3d' name='title'/>
+    <meta content='X3D specification example: PointSet demonstration.' name='description'/>
+    <meta content='Don Brutzman and Joe Williams' name='editors'/>
+    <meta content='June 2002' name='created'/>
+    <meta content='28 July 2008' name='modified'/>
+    <meta content='http://www.web3d.org/x3d/specifications/ISO-IEC-19776-X3DEncodings-XML-ClassicVRML/Part01/examples.html#PointSet' name='reference'/>
+    <meta content='http://www.web3d.org/x3d/content/examples/Basic/X3dSpecification/PointSet.x3d' name='identifier'/>
+    <meta content='X3D-Edit 3.2, https://savage.nps.edu/X3D-Edit' name='generator'/>
+    <meta content='../license.html' name='license'/>
+  </head>
+  <Scene>
+    <Shape>
+      <PointSet>
+        <Color color='1 0 0 0 1 0 0 0 1'/>
+        <Coordinate DEF='mypts' point='0.0 0.0 0.0 2.0 2.0 2.0 3.0 3.0 3.0'/>
+      </PointSet>
+    </Shape>
+    <Transform translation='2.0 0.0 0.0'>
+      <Shape>
+        <PointSet>
+          <Coordinate USE='mypts'/>
+        </PointSet>
+      </Shape>
+    </Transform>
+  </Scene>
+</X3D>

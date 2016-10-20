@@ -1,0 +1,142 @@
+﻿<?xml version="1.0"?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <title>SVG 3D Test</title>
+    <style>
+	#content{border:thick inset yellow;outline:yellow outset thick;}
+   </style>
+    <script src="VRMLObjects.js" type="text/javascript"/>
+
+</head>
+<body style="background-color:#E8E8FF">
+<h1 id="hi" style="display:inline;margin-left:1cm" >JS3D V0.2   </h1>
+	<dd:svg id="content" focusable = "true" viewBox="-1000 -1000 2000 2000" autowidth="2000" xpos="0" ypos="0" viewAngle=".7" style="display:block;background-color:skyBlue" fill="skyBlue" xmlns:dd="http://www.w3.org/2000/svg" width="95%" height="50%" xmlns:xlink="http://www.w3.org/1999/xlink" stroke="black">
+  <dd:defs>
+<dd:marker refY="50" refX="50" markerHeight="15" markerWidth="15" viewBox="0 0 100 100" orient="auto" markerUnits="strokeWidth" id="marker">
+   <dd:circle stroke-width="10"  cy="50" cx="50" r="30"/>
+  </dd:marker>
+  </dd:defs>
+	<!-- fix for chrome's inability to get mouse events from initially unfilled svg -->
+	<dd:path d="M-10000,-1000v20000h20000v-20000" stroke="none"/>
+	<dd:g id="shapes" stroke-width="1" >
+  	<dd:path d="M0,0"/>
+  	<dd:path d="M0,0"/>
+  	<dd:path d="M0,0" />
+  	<dd:path d="M0,0"/>
+  	<dd:path d="M0,0"/>
+  	<dd:path d="M0,0"/>
+  	<dd:path d="M0,0"/>
+  	<dd:path d="M0,0"/>
+  	<dd:path d="M0,0"/>
+  	<dd:path d="M0,0"/>
+  	<dd:path d="M0,0"/>
+  	<dd:path d="M0,0"/>
+  	<dd:path d="M0,0"/>
+  	<dd:path d="M0,0"/>
+  	<dd:path d="M0,0"/>
+  	<dd:path d="M0,0"/>
+  	<dd:path d="M0,0"/>
+  	<dd:path d="M0,0"/>
+  	<dd:path d="M0,0"/>
+  	<dd:path d="M0,0"/>
+  	<dd:path d="M0,0"/>
+  	<dd:path d="M0,0"/>
+  	<dd:path d="M0,0"/>
+  	<dd:path d="M0,0"/>
+  	<dd:path d="M0,0"/>
+  	<dd:path d="M0,0"/>
+  	<dd:path d="M0,0"/>
+  	<dd:path d="M0,0"/>
+  	<dd:path d="M0,0"/>
+ 	</dd:g>
+
+	</dd:svg>
+
+<h2 style="text-decoration:underline;margin-left:1cm;display:inline;color:blue" onclick='
+  			responseToMouse.mode=(responseToMouse.mode+1) % responseToMouse.modes.length;
+			this.textContent=responseToMouse.modes[responseToMouse.mode].name;
+			'>walk</h2> mode
+<h3 style="display:inline;color:red">0</h3><h3 style="display:inline">fps</h3>
+	<ddd:X3D xmlns:ddd="http://www.web3d.org/specifications/x3d-3.0">
+	<ddd:Scene colour="grey">
+
+
+	<ddd:Shape colour="white" x="3.916" y="-1.649" z="-.169" sx="0.506" sy="0.506" sz="0.506" transparency="0">
+		<ddd:Sphere/>
+	</ddd:Shape>
+	<ddd:Shape colour="white" x="0.197" y="-4.615" z="-.785" sx="0.506" sy="0.506" sz="0.506" transparency="0">
+		<ddd:Sphere/>
+	</ddd:Shape>
+	<ddd:Shape colour="white" x="0.918" y="-3.579" z="-1.821" sx="0.506" sy="0.506" sz="0.506" transparency="0">
+		<ddd:Sphere/>
+	</ddd:Shape>
+	<ddd:Shape colour="white" x="1.819" y="-4.437" z="-.764" sx="0.506" sy="0.506" sz="0.506" transparency="0">
+		<ddd:Sphere/>
+	</ddd:Shape>
+	<ddd:Shape colour="white" x="0.858" y="-3.305" z="1.129" sx="0.506" sy="0.506" sz="0.506" transparency="0">
+		<ddd:Sphere/>
+	</ddd:Shape>
+	<ddd:Shape colour="white" x="-.486" y="-1.69" z="-.962" sx="0.506" sy="0.506" sz="0.506" transparency="0">
+		<ddd:Sphere/>
+	</ddd:Shape>
+	<ddd:Shape colour="white" x="-1.243" y="-2.767" z=".08" sx="0.506" sy="0.506" sz="0.506" transparency="0">
+		<ddd:Sphere/>
+	</ddd:Shape>
+
+	<ddd:Shape colour="red" x="3.267" y="-2.404" z="-.076" sx="0.699" sy="0.699" sz="0.699" transparency="0">
+		<ddd:Sphere/>
+	</ddd:Shape>
+	<ddd:Shape colour="red" x="1.78" y="-0.68" z="-.061"  sx="0.699" sy="0.699" sz="0.699" transparency="0">
+		<ddd:Sphere/>
+	</ddd:Shape>
+
+	<ddd:Shape colour="grey" x="0.948" y="-3.965" z="-.899" sx="0.782" sy="0.782" sz="0.782" transparency="0">
+		<ddd:Sphere/>
+	</ddd:Shape>
+	<ddd:Shape colour="grey" x="1.973" y="-1.899" z="-.0060" sx="0.782" sy="0.782" sz="0.782" transparency="0">
+		<ddd:Sphere/>
+	</ddd:Shape>
+	<ddd:Shape colour="grey" x="0.811" y="-2.835" z=".136" sx="0.782" sy="0.782" sz="0.782" transparency="0">
+		<ddd:Sphere/>
+	</ddd:Shape>
+
+	<ddd:Shape colour="blue" x="-0.455" y="-2.112" z="-.023" sx="0.713" sy="0.713" sz="0.713" transparency="0">
+		<ddd:Sphere/>
+	</ddd:Shape>
+
+
+
+
+
+
+
+</ddd:Scene>
+	</ddd:X3D>
+	<script>
+		<![CDATA[
+			 modeDisplay=document.getElementsByTagNameNS("http://www.w3.org/1999/xhtml","h2")[0];
+			 rateDisplay=document.getElementsByTagNameNS("http://www.w3.org/1999/xhtml","h3")[0];
+
+			 content=document.getElementById("content")
+			 geometry=document.getElementById("shapes");
+			 shapes=geometry.getElementsByTagNameNS("http://www.w3.org/2000/svg","path")
+
+	]]>
+        </script>
+	
+	<script src="vrml2svg.js" type="text/javascript"/>
+	
+	<script>
+		<![CDATA[
+	drawAll(objects);
+
+
+	]]>
+
+        </script>
+    <script src="VRMLBrowser.js" type="text/javascript"/>
+
+<!--<p onclick="write('test',objects[0].indexes.length)">Click</p>-->
+<!--<input type="text" name="firstname" />-->
+</body>
+</html>

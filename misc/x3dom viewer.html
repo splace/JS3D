@@ -1,0 +1,132 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	
+<title>WebGL 3D Viewer V0.1 aka X3Dom drag/drop example</title>
+<style>
+</style>
+</head>
+       
+<body>
+ <div>
+    <h1>WebGL 3D Viewer V0.1</h1>
+    <h2>aka X3Dom drag/drop example</h2>
+    <h3>Using WebGL, XMLHttpRequest and HTML5 Drag/Drop + File API's</h3>
+    <span>View 3D file by Dropping Local or URL Link into Panel below.</span>
+    <span>File type(s); X3D (as supported by X3Dom)</span>
+	<p class="3dpane" ondrop="droppedOntoRoot(event);" ondragenter="return false" ondragover="return false"> 
+	<X3D id="root" x="0px" y="0px" width="800" height="500" style="background-color:LightBlue" >
+			<Scene id="target"><Shape><Text string="Drop here." /></Shape></Scene>
+	
+		</X3D>
+	</p>
+	<code id="holder"/> 
+	<ul>
+	<li>mouse 'left button' + drag = study</li>
+	<li>'middle button'+drag=pan</li>
+	<li>'right button' + drag (or wheel)= zoom</li>
+	<li> 'Left button' double click=Set center of rotation</li>
+	</ul>
+	<p>Tested on chrome 7.0.517.44 (64615) Built on Ubuntu 10.10 (current stable release)</p>
+	<p>run using command line options:  --enable-webgl --enable-accelerated-compositing  --allow-file-access-from-files</p>
+	<p>Note1: URL's have to be from the same server as this file (browsers cross domain security restriction)</p>
+	
+</div>
+	<script type="text/javascript">
+
+
+parseX3D=function(){
+	return RegExp("<Scene.*>((?:\n|.)*)</Scene>","m").exec(arguments[0])[1]
+	}
+
+
+parsePTX=function(){
+	// build single regexp with the three alts TODO
+	var re=RegExp("^[0-9]+","gm")
+	var ms=re.exec(arguments[0])
+	var width=parseInt(ms[0])
+	ms=re.exec(arguments[0])
+	var height=parseInt(ms[0])
+	var reml=RegExp("(^[+-]?[0-9]*(?:\.[0-9]+)?) ([+-]?[0-9]*(?:\.[0-9]+)?) ([+-]?[0-9]*(?:\.[0-9]+)?)","gm")
+	var mat1=reml.exec(arguments[0])
+	mat1=reml.exec(arguments[0])
+	mat1=reml.exec(arguments[0])
+	mat1=reml.exec(arguments[0])
+	reml=RegExp("(^[+-]?[0-9]*(?:\.[0-9]+)?) ([+-]?[0-9]*(?:\.[0-9]+)?) ([+-]?[0-9]*(?:\.[0-9]+)?) ([+-]?[0-9]*(?:\.[0-9]+)?)","gm")
+	mat1=reml.exec(arguments[0])
+	mat1=reml.exec(arguments[0])
+	mat1=reml.exec(arguments[0])
+	mat1=reml.exec(arguments[0])
+	reml=RegExp("(^[+-]?[0-9]*(?:\.[0-9]+)?) ([+-]?[0-9]*(?:\.[0-9]+)?) ([+-]?[0-9]*(?:\.[0-9]+)?) ([+-]?[0-9]*(?:\.[0-9]+)?) ([0-9][0-9]?[0-9]?) ([0-9][0-9]?[0-9]?) ([0-9][0-9]?[0-9]?)","gm")
+	var colors="",coords=""
+	for (var l=0;l<width*height;l++){
+		mat1=reml.exec(arguments[0])
+		coords+=(" "+parseFloat(mat1[1])+" "+parseFloat(mat1[2])+" "+parseFloat(mat1[3]))
+		//colors=colors+" "+parseFloat(mat1[4])*parseInt(mat1[5])/256+" "+parseFloat(mat1[4])*parseInt(mat1[6])/256+" "+parseFloat(mat1[4])*parseInt(mat1[6])/256
+		}
+	return '<Shape><PointSet><Coordinate point="' +coords+'"/></PointSet></Shape>'
+	}
+// disable drop until downloaded TODO
+
+function parserPicker(location,type){
+	if (type=="model/x3d" || type=="model/x3d+xml" || type=="" && file.name.match(/\.x3d(\?|$)/i)){
+		return parseX3D
+		}
+	if (type=="model/ptx" || type=="" && file.name.match(/\.x3d(\?|$)/i)){
+		return parsePTX
+		}
+
+	}
+
+
+function droppedOntoRoot(evt){
+	evt.stopPropagation();
+	document.getElementById('holder').firstChild.nodeValue="Dropped"
+	if (file=evt.dataTransfer.files[0]){
+		document.getElementById('holder').firstChild.nodeValue+=" File: "+file.name+" "+(file.type?"("+file.type+")":"")+" "+(file.size?Math.ceil(file.size/1000)+"kB":"")
+		evt.preventDefault();
+		var fparser=parserPicker(file.name,file.type)
+		if (fparser){
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				var startTime=new Date();
+				document.getElementById('target').innerHTML=fparser(e.target.result)
+				document.getElementById('holder').firstChild.nodeValue=document.getElementById('holder').firstChild.nodeValue+ " Parse: "+(new Date()-startTime)/1000+"secs"
+				}
+			reader.readAsText(file);
+			}
+		return
+		}
+
+	if (url=evt.dataTransfer.getData("url")){
+		document.getElementById('holder').firstChild.nodeValue+=" Link: "+url
+		evt.preventDefault();
+		reader= new XMLHttpRequest()
+		reader.open("HEAD",url,false)
+		reader.send()
+		document.getElementById('holder').firstChild.nodeValue=document.getElementById('holder').firstChild.nodeValue+reader.getResponseHeader("Content-Type")  
+		var lparser=parserPicker(url,reader.getResponseHeader("Content-Type"))
+		if (lparser){
+			reader.onreadystatechange = function() {
+				if (reader.readyState==4){
+					var startTime=new Date();
+					document.getElementById('target').innerHTML=lparser(reader.responseText)
+					document.getElementById('holder').firstChild.nodeValue=document.getElementById('holder').firstChild.nodeValue+ " Parse: "+(new Date()-startTime)/1000+"secs"
+					};
+				}
+			reader.open("GET",url,true)
+			reader.send()
+			}
+		}
+	}
+	
+	
+	    
+	</script>
+	
+	<p class="case"> &nbsp; 
+	</p>
+	
+	<script type="text/javascript" src="x3dom.js"></script>
+
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png" /></a><br />This <span xmlns:dct="https://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/InteractiveResource" rel="dct:type">work</span> is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.
+</body></html>

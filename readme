@@ -1,5 +1,9 @@
 Start by downlaoding, and firing into a browser, any *.xml file
 
+or
+
+check out "demo media"
+
 Technology demonstrator of 3D rendering and navigation within a standards compliant web page (requires browser SVG support), no need for a plugin. Intended for use creating basic informative diagrams, ideal for live 3D animations through a web 2.0 mashup. Uses JavaScript to generate SVG (inline) from X3D (inline) using a VRMLScript compliant environment object (an implementation of the VRMLScript standard in JS).
 
 facesets, linesets, pointsets, primitives
